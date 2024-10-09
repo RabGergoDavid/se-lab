@@ -8,7 +8,7 @@ import java.util.Random;
 * (Deliberately contains bugs.)
 */
 public class TorpedoStore {
-  Random generator = new Random();
+  Random generator = new Random(); //random generátor az egész class-ban elérhető
 
   // rate of failing to fire torpedos [0.0, 1.0]
   private double FAILURE_RATE = 0.0; //NOSONAR
@@ -31,7 +31,7 @@ public class TorpedoStore {
 
   public boolean fire(int numberOfTorpedos){
     if(numberOfTorpedos < 1 || numberOfTorpedos > this.torpedoCount){
-      throw new IllegalArgumentException("numberOfTorpedos");
+      throw new IllegalArgumentException("numberOfTorpedos"); //hibakezelés javítása
     }
 
     boolean success = false;
@@ -41,7 +41,7 @@ public class TorpedoStore {
 
     if (r >= FAILURE_RATE) {
       // successful firing
-      this.torpedoCount -= numberOfTorpedos;
+      this.torpedoCount -= numberOfTorpedos; // =- operátor helyett -= használata
       success = true;
     } else {
       // simulated failure
